@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <a href="#/app1">应用1</a>
+    <a href="#/app2">应用2</a> -->
+    <a onclick="a()">应用1</a>
+    <a onclick="b()">应用2</a>
+    <script src="/lib/umd/single-spa.js"></script>
+    <script>
+      function a() {
+        history.pushState({}, '', '/a');
+      }
+      function b() {
+        history.pushState({}, '', '/b');
+      }
+
+      // 参数
+      // 1、注册应用的名字
+      // 2、加载app的方法必须返回一个promise方法
+      singleSpa.registerApplication(
+        'app1',
+        async (props) => {
+          console.log('加载时执行1');
+          // 这个函数需要返回结果
+          return {
+            // bootstrap: [async (props) => {}, async (props) => {}],
+            bootstrap: async (props) => {
+              console.log('bootstrap1');
+            },
+            mount: async (props) => {
+              console.log('mount1');
+            },
+            unmount: async (props) => {
+              console.log('unmount1');
+            },
+          };
+        },
+        // (location) => location.hash.startsWith('#/app1'),
+        (location) => location.pathname.startsWith('/a'),
+        { store: { name: 'crk1', age: 11 } }
+      );
+
+      singleSpa.registerApplication(
+        'app2',
+        async (props) => {
+          console.log('加载时执行2');
+          // 这个函数需要返回结果
+          return {
+            // bootstrap: [async (props) => {}, async (props) => {}],
+            bootstrap: async (props) => {
+              console.log('bootstrap2');
+            },
+            mount: async (props) => {
+              console.log('mount2');
+            },
+            unmount: async (props) => {
+              console.log('unmount2');
+            },
+          };
+        },
+        // (location) => location.hash.startsWith('#/app2'),
+        (location) => location.pathname.startsWith('/b'),
+        { store: { name: 'crk2', age: 22 } }
+      );
+
+      // 启动这个应用，只有调用了这个方法才会去挂载这个应用，否则只是会加载应用而没有挂载
+      singleSpa.start();
+
+      // registerApplication 默认在匹配到hash的时候会加载应用
+      // start 才会挂载应用
+
+      window.addEventListener('hashchange', () => {});
+    </script>
+  </body>
+</html>

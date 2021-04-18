@@ -1,0 +1,25 @@
+{
+  "name": "qiankun-source-code",
+  "version": "1.0.0",
+  "description": "模拟 qiankun 源码写的一个框架",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "rollup -c -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crk123kk/qiankun-source-code.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crk123kk/qiankun-source-code/issues"
+  },
+  "homepage": "https://github.com/crk123kk/qiankun-source-code#readme",
+  "devDependencies": {
+    "rollup": "^2.45.2",
+    "rollup-plugin-serve": "^1.1.0"
+  }
+}
