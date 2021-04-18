@@ -2,6 +2,9 @@
 
     模拟 qiankun 源码写的一个框架
 
+    npm install
+    npm run dev
+
 ##### qiankun 源码解读
 
     主要是封装了 single-spa的技术成为一个框架
